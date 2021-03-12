@@ -2,3 +2,4 @@
 .idea
 .gitattributes
 .gitignore
+composer.lock

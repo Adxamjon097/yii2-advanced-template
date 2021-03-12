@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# End processsing, if a rewrite already occurred
+RewriteRule ^(frontend|backend)/web/ - [L]
+
+# Handle the case of backend, skib ([S=1]) the following rule, if current matched
+RewriteRule ^admin(/(.*))?$ backend/web/$2 [S=1]
+
+
+#RewriteCond %{REQUEST_URI} ^/(assets|css)
+RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+
+
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ frontend/web/$1 [L]
+
+#RewriteCond %{REQUEST_URI} ^/(assets|css)
+RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
